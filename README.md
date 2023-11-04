@@ -1,4 +1,4 @@
-                    # EZ-FIT
+# EZ-FIT
                     
 A cross-platform Project for web/mobile/desktop
 

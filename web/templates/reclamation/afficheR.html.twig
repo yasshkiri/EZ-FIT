@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <main id="main" class ="main">
+    <table id="reclamations" class="table table-striped">
+        <thead>
+        <tr>
+            <h2>{% trans %}Filterable Table{% endtrans %}</h2>
+            <p>Type something in the input field to search the table for first names, last names or emails:</p>
+            <input id="myInput" type="text" placeholder="Search..">
+            <br><br>
+            <td>ID</td>
+            <td>Redacteur Reclamation</td>
+            <td>Date Reclamation</td>
+            <td>Contenu</td>
+            <td>Image</td>
+
+            <td>Action</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in r %}
+        <tbody id="myTable">
+            <tr>
+
+
+                <td>{{ i.id }}</td>
+                <td>{{ i.redacteurRec|title }}</td>
+
+                <td>{{ i.dateRec|format_datetime(locale='en') }}</td>
+                <td>{{ i.contenuRec }}</td>
+
+                <td class="table-light"><img src="{{ asset('/uploads/' ~ i.image ) }}" alt="img" class="image" style="max-height: 150px; width: 120px;" ></td>
+
+
+                <td>
+                    <form action="{{ path('suppRR',{'id':i.id}) }}">
+                        <button>Supprimer</button></form>
+
+                </td>
+
+                </td>
+
+
+
+
+
+
+
+            </tr>
+        </tbody>
+        {% endfor %}
+        </tbody>
+    </table>
+        <!-- start Gist JS code-->
+        <script>
+            (function(d,h,w){var gist=w.gist=w.gist||[];gist.methods=['trackPageView','identify','track','setAppId'];gist.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);gist.push(e);return gist;}};for(var i=0;i<gist.methods.length;i++){var c=gist.methods[i];gist[c]=gist.factory(c)}s=d.createElement('script'),s.src="https://widget.getgist.com",s.async=!0,e=d.getElementsByTagName(h)[0],e.appendChild(s),s.addEventListener('load',function(e){},!1),gist.setAppId("g4dngrqb"),gist.trackPageView()})(document,'head',window);
+        </script>
+        <!-- end Gist JS code-->
+        <!--End of Tawk.to Script-->
+    </main>
+{% endblock %}

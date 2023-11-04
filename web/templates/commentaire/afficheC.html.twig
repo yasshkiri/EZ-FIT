@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <main id="main" class ="main">
+    <table id="commentaires" class="table table-striped">
+        <thead>
+        <tr>
+           <div class="aa" >
+            <td>ID</td>
+            <td>Redacteur</td>
+            <td>Date</td>
+            <td>Texte</td>
+           </div>
+            <td>Publication</td>
+            <td>Image</td>
+            <td>Action</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in c %}
+            <tr>
+
+
+                <td>{{ i.id }}</td>
+                <td>{{ i.redacteurCom|title }}</td>
+                <td>{{ i.dateCom|format_datetime(locale='en') }}</td>
+                <td>{{ i.text }}</td>
+                <td>{{ i.publication.contenu }}</td>
+                <td class="table-light"><img src="{{ asset('/uploads/' ~ i.image ) }}" alt="img" class="image" style="max-height: 150px; width: 120px;" ></td>
+
+                <td>
+                    <form action="{{ path('suppC',{'id':i.id}) }}">
+                        <button>Supprimer</button></form>
+                    <form action="{{ path('modifC',{'id':i.id}) }}">
+                        <button>Modifier</button></form>
+
+                </td>
+
+
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </main>
+{% endblock %}
